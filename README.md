@@ -1,4 +1,9 @@
 # gulpとes6とreactとFlux
-簡単なサンプルの作成
+## 簡単なTODOサンプル
 
-Google Web Starter Kit ベース
+1. nodeをインストール
+2. npm install
+3. npm -g gulp
+4. npm start
+
+localhost:3000 にアクセス。
