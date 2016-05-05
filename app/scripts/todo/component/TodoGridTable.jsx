@@ -9,7 +9,7 @@ import TableRow from 'material-ui/lib/table/table-row';
 export default class TodoGridTable extends React.Component {
 
   render() {
-    const rows = this.props.todos.map((e) => <TodoRow todo={e} onTouchRemove={this.props.onTouchRemove} onChangeComplete={this.props.onChangeComplete} />);
+    const rows = this.props.todos.map((e) => <TodoRow todo={e} key={e.id} onTouchRemove={this.props.onTouchRemove} onChangeComplete={this.props.onChangeComplete} />);
 
     return (
       <Table selectable={false}>

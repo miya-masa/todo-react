@@ -110,8 +110,8 @@ class TodoDialog extends React.Component {
         </FloatingActionButton>
         <Dialog title= 'Todo追加' actions={actions} modal={true} open={this.state.open} >
           <h3>Todo追加してみよう</h3>
-            <TextField id='todo' hintText='Todo Text' errorText={this.state.error ? this.state.error.todo : ''} onChange={this._onChangeTodo}/>
-            <DatePicker hintText='Limit Date' id='limitDate' errorText={this.state.error ? this.state.error.limitDate : ''} onChange={this._onChangeLimitDate} DateTimeFormat={Intl.DateTimeFormat} locale='ja'/>
+            <TextField id='todo' hintText='Todo Text' errorText={this.state.error ? this.state.error.todo : ''} onChange={this._onChangeTodo.bind(this)}/>
+            <DatePicker hintText='Limit Date' id='limitDate' errorText={this.state.error ? this.state.error.limitDate : ''} onChange={this._onChangeLimitDate.bind(this)} DateTimeFormat={Intl.DateTimeFormat} locale='ja'/>
         </Dialog>
       </div>
       );

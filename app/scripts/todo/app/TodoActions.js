@@ -35,5 +35,15 @@ class TodoActions {
     });
   }
 
+  searchTodo(predicate) {
+    Dispatcher.dispatch({
+      source: 'VIEW_ACTION',
+      action: {
+        actionType: TodoConstants.SEARCH,
+        predicate
+      }
+    });
+  }
+
 }
 export default new TodoActions();

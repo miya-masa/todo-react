@@ -2,6 +2,9 @@ import React from 'react';
 import AppBar from 'material-ui/lib/app-bar';
 import TodoStore from '../store/TodoStore';
 import TodoActions from '../app/TodoActions';
+import TodoDialog from '../component/TodoDialog.jsx';
+import TodoGridTable from '../component/TodoGridTable.jsx';
+import TodoSearchBox from '../component/TodoSearchBox.jsx';
 
 export default class Todo extends React.Component {
 
@@ -13,16 +16,16 @@ export default class Todo extends React.Component {
   }
 
   componentDidMount() {
-    TodoStore.addListener(this.onChange.bind(this));
+    TodoStore.addListener(this.changeTodoState.bind(this));
   }
 
   componentWillUnMount() {
-    TodoStore.removeListener(this.onChange.bind(this));
+    TodoStore.removeListener(this.changeTodoState.bind(this));
   }
 
-  onChange() {
+  changeTodoState(todos = TodoStore.getAllTodos()) {
     this.setState({
-      todos: TodoStore.getAllTodos()
+      todos
     });
   }
 
@@ -44,6 +47,7 @@ export default class Todo extends React.Component {
         <AppBar title='Todoリスト' showMenuIconButton={false} />
         <div>
           <TodoDialog handleSubmit={this.onSubmitTodoSuccess} />
+          <TodoSearchBox />
           <div>
             <TodoGridTable todos={this.state.todos} onChangeComplete={this.onChangeComplete} onTouchRemove={this.onTouchRemove}/>
           </div>

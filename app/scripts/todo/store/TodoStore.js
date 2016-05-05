@@ -12,8 +12,8 @@ class TodoStore extends EventEmitter {
       .register((payload) => this.handleViewAction(payload));
   }
 
-  fireEvent() {
-    this.emit(CHANGE);
+  fireEvent(...args) {
+    this.emit(CHANGE, ...args);
   }
 
   addListener(callback) {
@@ -40,6 +40,10 @@ class TodoStore extends EventEmitter {
       case TodoConstants.REMOVE:
         this.removeTodo(payload.action.todoId);
         this.fireEvent();
+        break;
+      case TodoConstants.SEARCH:
+        const todos = this.getTodos(payload.action.predicate);
+        this.fireEvent(todos);
         break;
       default:
         break;
@@ -75,11 +79,15 @@ class TodoStore extends EventEmitter {
   }
 
   getAllTodos() {
+    return this.getTodos(() => true);
+  }
+
+  getTodos(predicate) {
     const todos = [];
     for (let i = 0; i < localStorage.length; ++i) {
       todos.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
     }
-    return todos.filter(() => true);
+    return todos.filter(predicate);
   }
 }
 export default new TodoStore();

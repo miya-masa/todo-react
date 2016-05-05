@@ -1,5 +1,6 @@
 export default {
   CREATE: Symbol(),
   COMPLETE: Symbol(),
-  REMOVE: Symbol()
+  REMOVE: Symbol(),
+  SEARCH: Symbol()
 };
