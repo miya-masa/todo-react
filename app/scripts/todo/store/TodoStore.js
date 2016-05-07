@@ -1,6 +1,7 @@
 import { EventEmitter } from 'events';
 import Dispatcher from '../app/Dispatcher';
 import TodoConstants from '../app/TodoConstants';
+import UUID from 'uuid-js';
 
 const CHANGE = Symbol();
 
@@ -61,14 +62,7 @@ class TodoStore extends EventEmitter {
   }
 
   createTodo(todo, limitDate, complete = false) {
-    const id = (Number(new Date()) +
-    Math.floor(Math.random() * 999999)).toString(36);
-    console.log(JSON.stringify({
-      id,
-      todo,
-      limitDate,
-      complete
-    }));
+    const id = 'TODOID' + UUID.create(4);
 
     localStorage.setItem(id, JSON.stringify({
       id,
@@ -84,9 +78,10 @@ class TodoStore extends EventEmitter {
 
   getTodos(predicate) {
     const todos = [];
-    for (let i = 0; i < localStorage.length; ++i) {
-      todos.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
-    }
+    Object.keys(localStorage)
+      .filter((key) => key.indexOf('TODO') >= 0)
+      .map((key) => JSON.parse(localStorage.getItem(key)))
+      .forEach((todo) => todos.push(todo));
     return todos.filter(predicate);
   }
 }

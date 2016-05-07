@@ -16,7 +16,9 @@
  *  limitations under the License
  *
  */
-/* eslint-env browser,jquery global*/
+/* eslint-env browser,jquery global */
+/* eslint no-unused-vars: ["error", {"varsIgnorePattern": "React"}] */
+
 import Todo from './todo/container/Todo.jsx';
 import React from 'react';
 import ReactDOM from 'react-dom';

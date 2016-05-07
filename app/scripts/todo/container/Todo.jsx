@@ -2,7 +2,7 @@ import React from 'react';
 import AppBar from 'material-ui/lib/app-bar';
 import TodoStore from '../store/TodoStore';
 import TodoActions from '../app/TodoActions';
-import TodoDialog from '../component/TodoDialog.jsx';
+import TodoDialogContainer from './TodoDialogContainer.jsx';
 import TodoGridTable from '../component/TodoGridTable.jsx';
 import TodoSearchBox from '../component/TodoSearchBox.jsx';
 
@@ -37,8 +37,12 @@ export default class Todo extends React.Component {
     TodoActions.removeTodo(todo.id);
   }
 
-  onSubmitTodoSuccess(todo, limitDate) {
+  handleSubmitSuccess(todo, limitDate) {
     TodoActions.createTodo(todo, limitDate);
+  }
+
+  onChangeSearchBox(event) {
+    TodoActions.searchTodo((todo) => todo.todo.indexOf(event.target.value) >= 0);
   }
 
   render() {
@@ -46,10 +50,10 @@ export default class Todo extends React.Component {
       <div className='container'>
         <AppBar title='Todoリスト' showMenuIconButton={false} />
         <div>
-          <TodoDialog handleSubmit={this.onSubmitTodoSuccess} />
-          <TodoSearchBox />
+          <TodoDialogContainer handleSubmit={this.handleSubmitSuccess.bind(this)} />
+          <TodoSearchBox onChangeSearchBox={this.onChangeSearchBox.bind(this)}/>
           <div>
-            <TodoGridTable todos={this.state.todos} onChangeComplete={this.onChangeComplete} onTouchRemove={this.onTouchRemove}/>
+            <TodoGridTable todos={this.state.todos} onChangeComplete={this.onChangeComplete.bind(this)} onTouchRemove={this.onTouchRemove.bind(this)}/>
           </div>
         </div>
       </div>
