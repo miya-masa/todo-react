@@ -19,7 +19,7 @@
 /* eslint-env browser,jquery global */
 /* eslint no-unused-vars: ["error", {"varsIgnorePattern": "React"}] */
 
-import Todo from './todo/container/Todo.jsx';
+import Todo from './todo/container/TodoContainer.jsx';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import injectTapEventPlugin from 'react-tap-event-plugin';
