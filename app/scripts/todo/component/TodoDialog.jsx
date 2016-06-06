@@ -9,12 +9,12 @@ export default class TodoDialog extends React.Component {
   render() {
     const actions = [
       <FlatButton
-      label='Cancel'
+      label="Cancel"
       secondary={true}
       onTouchTap={this.props.handleCancel}
       />,
       <FlatButton
-      label='Submit'
+      label="Submit"
       primary={true}
       disabled={false}
       onTouchTap={this.props.handleSubmit}
@@ -26,18 +26,17 @@ export default class TodoDialog extends React.Component {
           <h3>{this.props.headerMessage}</h3>
           <TextField
       id={this.props.textTodoId}
-      hintText='Todo Text'
+      hintText="Todo Text"
       errorText={this.props.errorTodo}
       onChange={this.props.onChangeTodo}/>
     <DatePicker
-      hintText='Limit Date'
+      hintText="Limit Date"
       id={this.props.textLimitDateId}
       errorText={this.props.errorLimitDate}
       onChange={this.props.onChangeLimitDate}
       DateTimeFormat={Intl.DateTimeFormat}
-      locale='ja'/>
+      locale="ja"/>
         </Dialog>
       );
   };
-
 }

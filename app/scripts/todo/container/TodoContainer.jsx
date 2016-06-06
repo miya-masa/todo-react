@@ -5,22 +5,29 @@ import TodoActions from '../actions/TodoActions';
 import TodoDialogContainer from './TodoDialogContainer.jsx';
 import TodoGridTable from '../component/TodoGridTable.jsx';
 import TodoSearchBox from '../component/TodoSearchBox.jsx';
+import Container from '../component/Container.jsx';
 
 export default class Todo extends React.Component {
 
   constructor() {
     super();
+    this.changeTodoState = this.changeTodoState.bind(this);
+    this.onChangeComplete = this.onChangeComplete.bind(this);
+    this.onTouchRemove = this.onTouchRemove.bind(this);
+    this.handleSubmitSuccess = this.handleSubmitSuccess.bind(this);
+    this.onChangeSearchBox = this.onChangeSearchBox.bind(this);
+
     this.state = {
       todos: TodoStore.getAllTodos()
     };
   }
 
   componentDidMount() {
-    TodoStore.addListener(this.changeTodoState.bind(this));
+    TodoStore.addListener(this.changeTodoState);
   }
 
   componentWillUnMount() {
-    TodoStore.removeListener(this.changeTodoState.bind(this));
+    TodoStore.removeListener(this.changeTodoState);
   }
 
   changeTodoState(todos = TodoStore.getAllTodos()) {
@@ -47,16 +54,16 @@ export default class Todo extends React.Component {
 
   render() {
     return (
-      <div className='container'>
-        <AppBar title='Todoリスト' showMenuIconButton={false} />
+      <Container>
+        <AppBar title="Todoリスト" showMenuIconButton={false} />
         <div>
-          <TodoDialogContainer handleSubmit={this.handleSubmitSuccess.bind(this)} />
-          <TodoSearchBox onChangeSearchBox={this.onChangeSearchBox.bind(this)}/>
+          <TodoDialogContainer handleSubmit={this.handleSubmitSuccess} />
+          <TodoSearchBox onChangeSearchBox={this.onChangeSearchBox}/>
           <div>
-            <TodoGridTable todos={this.state.todos} onChangeComplete={this.onChangeComplete.bind(this)} onTouchRemove={this.onTouchRemove.bind(this)}/>
+            <TodoGridTable todos={this.state.todos} onChangeComplete={this.onChangeComplete} onTouchRemove={this.onTouchRemove}/>
           </div>
         </div>
-      </div>
+      </Container>
       );
   }
 }

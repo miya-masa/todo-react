@@ -8,12 +8,16 @@ import AddButton from '../component/AddButton.jsx';
 
 class TodoDialogContainer extends React.Component {
 
-  getValidatorData() {
-    return this.state;
-  }
-
   constructor(props) {
     super(props);
+    this.getValidatorData = this.getValidatorData.bind(this);
+    this.handleOpen = this.handleOpen.bind(this);
+    this.handleClose = this.handleClose.bind(this);
+    this.closeDialog = this.closeDialog.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.onChangeTodo = this.onChangeTodo.bind(this);
+    this.onChangeLimitDate = this.onChangeLimitDate(this);
+
     const language = {
       any: {
         required: '{{key}} は必須です。',
@@ -35,6 +39,10 @@ class TodoDialogContainer extends React.Component {
       open: false,
       error: {}
     };
+  }
+
+  getValidatorData() {
+    return this.state;
   }
 
   handleOpen() {
@@ -91,17 +99,17 @@ class TodoDialogContainer extends React.Component {
       <div>
         <AddButton handleAdd={this.handleOpen.bind(this)}/>
         <TodoDialog
-      title='Todo追加'
-      headerMessage='Todoを追加してみよう'
-      handleSubmit={this.handleSubmit.bind(this)}
-      handleCancel={this.handleClose.bind(this)}
+      title="Todo追加"
+      headerMessage="Todoを追加してみよう"
+      handleSubmit={this.handleSubmit}
+      handleCancel={this.handleClose}
       open={this.state.open}
-      textTodoId='todo'
-      textLimitDateId='limitDate'
+      textTodoId="todo"
+      textLimitDateId="limitDate"
       errorTodo={this.state.error.todo}
       errorLimitDate={this.state.error.limitDate}
-      onChangeLimitDate={this.onChangeLimitDate.bind(this)}
-      onChangeTodo={this.onChangeTodo.bind(this)}/>
+      onChangeLimitDate={this.onChangeLimitDate}
+      onChangeTodo={this.onChangeTodo}/>
       </div>
       );
   };

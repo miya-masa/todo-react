@@ -17,6 +17,10 @@
         "indent": 2,
         "linebreak-style": "off" ,
         "space-before-function-paren" : "off",
+        "jsx-quotes": [
+          2,
+          "prefer-double"
+        ],
         "quotes": [
             "error",
             "single"
