@@ -97,7 +97,7 @@ class TodoDialogContainer extends React.Component {
   render() {
     return (
       <div>
-        <AddButton handleAdd={this.handleOpen.bind(this)}/>
+        <AddButton handleAdd={this.handleOpen}/>
         <TodoDialog
       title="Todo追加"
       headerMessage="Todoを追加してみよう"
