@@ -1,5 +1,5 @@
 import { EventEmitter } from 'events';
-import Dispatcher from '../app/Dispatcher';
+import Dispatcher from '../../Dispatcher';
 import TodoConstants from '../app/TodoConstants';
 import UUID from 'uuid-js';
 

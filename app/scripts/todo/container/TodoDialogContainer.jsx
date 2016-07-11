@@ -16,7 +16,7 @@ class TodoDialogContainer extends React.Component {
     this.closeDialog = this.closeDialog.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.onChangeTodo = this.onChangeTodo.bind(this);
-    this.onChangeLimitDate = this.onChangeLimitDate(this);
+    this.onChangeLimitDate = this.onChangeLimitDate.bind(this);
 
     const language = {
       any: {

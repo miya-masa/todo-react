@@ -1,5 +1,5 @@
-import Dispatcher from '../Dispatcher';
-import TodoConstants from './TodoConstants';
+import Dispatcher from '../../Dispatcher';
+import TodoConstants from '../app/TodoConstants';
 
 class TodoActions {
 
