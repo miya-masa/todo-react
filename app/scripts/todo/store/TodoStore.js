@@ -9,8 +9,8 @@ class TodoStore extends EventEmitter {
 
   constructor() {
     super();
-    this.dispatcherToken = Dispatcher
-      .register((payload) => this.handleViewAction(payload));
+    Dispatcher.register((payload) => this.handleTodoAction(payload));
+    Dispatcher.register((payload) => this.handleDialogAction(payload));
   }
 
   fireEvent(...args) {
@@ -25,8 +25,17 @@ class TodoStore extends EventEmitter {
     super.removeListner(CHANGE, callback);
   }
 
-  handleViewAction(payload) {
-    switch (payload.action.actionType) {
+  handleDialogAction(payloat) {
+    switch (payload.actionType) {
+      case TodoConstants.SHOW_DIALOG:
+        this.showDialog();
+        this.fireEvent();
+        break;
+    }
+  }
+
+  handleTodoAction(payload) {
+    switch (payload.actionType) {
       case TodoConstants.CREATE:
         this.createTodo(
           payload.action.todo,

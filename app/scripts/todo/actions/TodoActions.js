@@ -5,43 +5,31 @@ class TodoActions {
 
   createTodo(todo, limitDate) {
     Dispatcher.dispatch({
-      source: 'VIEW_ACTION',
-      action: {
-        actionType: TodoConstants.CREATE,
-        todo,
-        limitDate
-      }
+      actionType: TodoConstants.CREATE,
+      todo,
+      limitDate
     });
   }
 
   removeTodo(todoId) {
     Dispatcher.dispatch({
-      source: 'VIEW_ACTION',
-      action: {
-        actionType: TodoConstants.REMOVE,
-        todoId
-      }
+      actionType: TodoConstants.REMOVE,
+      todoId
     });
   }
 
   completeTodo(todoId, complete) {
     Dispatcher.dispatch({
-      source: 'VIEW_ACTION',
-      action: {
-        actionType: TodoConstants.COMPLETE,
-        todoId,
-        complete
-      }
+      actionType: TodoConstants.COMPLETE,
+      todoId,
+      complete
     });
   }
 
   searchTodo(predicate) {
     Dispatcher.dispatch({
-      source: 'VIEW_ACTION',
-      action: {
-        actionType: TodoConstants.SEARCH,
-        predicate
-      }
+      actionType: TodoConstants.SEARCH,
+      predicate
     });
   }
 
