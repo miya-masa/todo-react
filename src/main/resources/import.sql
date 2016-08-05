@@ -1,0 +1,1 @@
+insert into todo(id,todo,user) values(10,'todo','user');

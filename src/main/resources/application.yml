@@ -3,5 +3,6 @@ spring:
     rest:
       base-path: /api
   jpa:
-    generate-ddl: true
     show-sql: true
+    hibernate:
+      ddl-auto: create-drop
