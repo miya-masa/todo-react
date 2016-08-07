@@ -1,8 +1,11 @@
-package com.miya.masa.rest;
+package com.miya.masa.domain.model.todo;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
+
+import com.miya.masa.domain.model.user.User;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,7 +21,8 @@ public class Todo {
 
   private String todo;
 
-  private String user;
+  @OneToOne
+  private User user;
 
   public Todo() {
 
