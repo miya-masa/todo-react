@@ -1,11 +1,20 @@
-# gulpとes6とreactとFluxでTodoList
+# TODOアプリケーション
+
+React + Redux を利用したTodoアプリケーションサンプル。
+
+## サーバ側実装技術
+* Spring Framework
+
+## クライアント側
+* React
+* Redux
+
 ## 準備
 
 1. nodeをインストール
-2. npm install
-3. npm -g gulp
-4. npm start
-5. localhost:3000 にアクセス。
+2. src/main/resources/static へ移動
+3.  ``` npm install ```
+4. プロジェクトルートで ``` ./gradlew bootRun ```
 
 ## ディレクトリ構成と方式
 
@@ -19,4 +28,4 @@
 
 低レベルなコンポーネントはmaterial-uiを利用する。(dumbの集合)
 
-http://www.material-ui.com/#/
+> http://www.material-ui.com/#/
