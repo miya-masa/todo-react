@@ -18,8 +18,11 @@ import pkg from './package.json';
 const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
 
+const sourceDir = 'src/main/javascript/';
+const destDir = 'src/main/static/dist/';
+
 // Lint JavaScript
-gulp.task('lint', () => gulp.src('src/**/*.js')
+gulp.task('lint', () => gulp.src(sourceDir + '**.js')
   .pipe($.eslint())
   .pipe($.eslint.format())
   .pipe($.if(!browserSync.active, $.eslint.failOnError()))
@@ -32,7 +35,7 @@ var bundle = (b) => {
     .pipe(source('bundle.js'))
     // optional, remove if you don't need to buffer file contents
     .pipe(buffer())
-    .pipe(gulp.dest('./dist/'))
+    .pipe(gulp.dest(destDir))
     .pipe(reload({
       stream: true,
       once: true
@@ -45,7 +48,7 @@ var bundle = (b) => {
 gulp.task('build', () => {
   // add custom browserify options here
   var opts = {
-    entries: ['src/main.js']
+    entries: [sourceDir + 'main.js']
   };
   var b = browserify(opts);
 
@@ -57,15 +60,15 @@ gulp.task('build', () => {
 gulp.task('watch', ['clean'], () => {
   // add custom browserify options here
   var customOpts = {
-    entries: ['src/main.js'],
+    entries: [sourceDir + 'main.js'],
     debug: true
   };
   var opts = assign({}, watchify.args, customOpts);
-  var watchify = watchify(browserify(opts));
+  var bundler = watchify(browserify(opts));
 
-  watchify.on('update', () => bundle(watchify)); // on any dep update, runs the bundler
-  watchify.on('log', $.util.log); // output build logs to terminal
-  return bundle(watchify);
+  bundler.on('update', () => bundle(bundler)); // on any dep update, runs the bundler
+  bundler.on('log', $.util.log); // output build logs to terminal
+  return bundle(bundler);
 });
 
 // Clean output directory
@@ -85,21 +88,18 @@ gulp.task('serve', ['watch'], () => {
     // Note: this uses an unsigned certificate which on first access
     //       will present a certificate warning in the browser.
     // https: true,
-    server: ['./'],
+    // server: ['./'],
     proxy: 'localhost:8080',
     port: 3000
 
   });
 
-  gulp.watch(['app/**/*.html'], reload);
-  gulp.watch(['app/src/**/*.js'], ['lint']);
-  gulp.watch(['app/images/**/*'], reload);
+  gulp.watch([sourceDir + '**.js'], ['lint']);
 });
 
 // Build production files, the default task
 gulp.task('default', ['clean'], cb => runSequence(
   ['lint', 'html', 'build'],
-  'generate-service-worker',
   cb
 )
 );

@@ -6,7 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -27,7 +27,7 @@ public class Todo {
   @GeneratedValue
   private Long id;
 
-  @OneToOne
+  @ManyToOne
   private User user;
 
   @Column(name = "todo")
