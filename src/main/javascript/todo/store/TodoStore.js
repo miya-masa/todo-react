@@ -25,7 +25,7 @@ class TodoStore extends EventEmitter {
     super.removeListner(CHANGE, callback);
   }
 
-  handleDialogAction(payloat) {
+  handleDialogAction(payload) {
     switch (payload.actionType) {
       case TodoConstants.SHOW_DIALOG:
         this.showDialog();
@@ -38,21 +38,21 @@ class TodoStore extends EventEmitter {
     switch (payload.actionType) {
       case TodoConstants.CREATE:
         this.createTodo(
-          payload.action.todo,
-          payload.action.limitDate,
-          payload.action.complete);
+          payload.todo,
+          payload.limitDate,
+          payload.complete);
         this.fireEvent();
         break;
       case TodoConstants.COMPLETE:
-        this.completeTodo(payload.action.todoId, payload.action.complete);
+        this.completeTodo(payload.todoId, payload.complete);
         this.fireEvent();
         break;
       case TodoConstants.REMOVE:
-        this.removeTodo(payload.action.todoId);
+        this.removeTodo(payload.todoId);
         this.fireEvent();
         break;
       case TodoConstants.SEARCH:
-        const todos = this.getTodos(payload.action.predicate);
+        const todos = this.getTodos(payload.predicate);
         this.fireEvent(todos);
         break;
       default:

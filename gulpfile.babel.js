@@ -19,7 +19,7 @@ const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
 
 const sourceDir = 'src/main/javascript/';
-const destDir = 'src/main/static/dist/';
+const destDir = 'src/main/resources/static/dist/';
 
 // Lint JavaScript
 gulp.task('lint', () => gulp.src(sourceDir + '**.js')

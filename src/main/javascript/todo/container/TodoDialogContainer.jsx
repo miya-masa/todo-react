@@ -78,7 +78,7 @@ class TodoDialogContainer extends React.Component {
         this.closeDialog();
       }
     };
-    this.props.validate(onValidate);
+    this.props.validate(onValidate.bind(this));
   }
 
   onChangeTodo(event) {
