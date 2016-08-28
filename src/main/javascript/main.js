@@ -32,7 +32,7 @@ const store = configureStore();
 
 render(
   <Provider store={store}>
-     <Todo />,
+     <Todo />
   </Provider>,
   document.getElementById('contents')
 );

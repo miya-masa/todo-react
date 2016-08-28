@@ -1,13 +1,14 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import AppBar from 'material-ui/lib/app-bar';
 import TodoStore from '../store/TodoStore';
-import TodoActions from '../actions/TodoActions';
+import { load } from '../actions/TodoActions';
 import TodoDialogContainer from './TodoDialogContainer.jsx';
 import TodoGridTable from '../component/TodoGridTable.jsx';
 import TodoSearchBox from '../component/TodoSearchBox.jsx';
 import Container from '../component/Container.jsx';
 
-export default class Todo extends React.Component {
+class Todo extends React.Component {
 
   constructor() {
     super();
@@ -17,17 +18,16 @@ export default class Todo extends React.Component {
     this.handleSubmitSuccess = this.handleSubmitSuccess.bind(this);
     this.onChangeSearchBox = this.onChangeSearchBox.bind(this);
 
-    this.state = {
-      todos: TodoStore.getAllTodos()
-    };
+  //    this.state = { todos: TodoStore.getAllTodos()
+  //    };
   }
 
   componentDidMount() {
-    TodoStore.addListener(this.changeTodoState);
+    this.props.dispatch(load());
   }
 
   componentWillUnMount() {
-    TodoStore.removeListener(this.changeTodoState);
+    //    TodoStore.removeListener(this.changeTodoState);
   }
 
   changeTodoState(todos = TodoStore.getAllTodos()) {
@@ -37,33 +37,41 @@ export default class Todo extends React.Component {
   }
 
   onChangeComplete(todo, value) {
-    TodoActions.completeTodo(todo.id, value);
+    //   TodoActions.completeTodo(todo.id, value);
   }
 
   onTouchRemove(todo) {
-    TodoActions.removeTodo(todo.id);
+    //   TodoActions.removeTodo(todo.id);
   }
 
   handleSubmitSuccess(todo, limitDate) {
-    TodoActions.createTodo(todo, limitDate);
+    //   TodoActions.createTodo(todo, limitDate);
   }
 
   onChangeSearchBox(event) {
-    TodoActions.searchTodo((todo) => todo.todo.indexOf(event.target.value) >= 0);
+    //  TodoActions.searchTodo((todo) => todo.todo.indexOf(event.target.value) >= 0);
   }
+
+  //      <Container>
+  //        <AppBar title="Todoリスト" showMenuIconButton={false} />
+  //        <div>
+  //          <TodoDialogContainer handleSubmit={this.handleSubmitSuccess} />
+  //          <TodoSearchBox onChangeSearchBox={this.onChangeSearchBox}/>
+  //          <div>
+  //            <TodoGridTable todos={this.state.todos} onChangeComplete={this.onChangeComplete} onTouchRemove={this.onTouchRemove}/>
+  //          </div>
+  //        </div>
+  //      </Container>
 
   render() {
     return (
-      <Container>
-        <AppBar title="Todoリスト" showMenuIconButton={false} />
-        <div>
-          <TodoDialogContainer handleSubmit={this.handleSubmitSuccess} />
-          <TodoSearchBox onChangeSearchBox={this.onChangeSearchBox}/>
-          <div>
-            <TodoGridTable todos={this.state.todos} onChangeComplete={this.onChangeComplete} onTouchRemove={this.onTouchRemove}/>
-          </div>
-        </div>
-      </Container>
+      <h1>heelo</h1>
       );
   }
 }
+
+function mapStateToProps(state = {}) {
+  return state;
+}
+
+export default connect(mapStateToProps)(Todo);

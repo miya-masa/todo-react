@@ -1,37 +1,42 @@
-import Dispatcher from '../../Dispatcher';
-import TodoConstants from '../app/TodoConstants';
+import fetch from 'isomorphic-fetch';
 
-class TodoActions {
+export const REQUEST = 'todo.request';
+export const RECEIVED = 'todo.received';
 
-  createTodo(todo, limitDate) {
-    Dispatcher.dispatch({
-      actionType: TodoConstants.CREATE,
-      todo,
-      limitDate
-    });
-  }
-
-  removeTodo(todoId) {
-    Dispatcher.dispatch({
-      actionType: TodoConstants.REMOVE,
-      todoId
-    });
-  }
-
-  completeTodo(todoId, complete) {
-    Dispatcher.dispatch({
-      actionType: TodoConstants.COMPLETE,
-      todoId,
-      complete
-    });
-  }
-
-  searchTodo(predicate) {
-    Dispatcher.dispatch({
-      actionType: TodoConstants.SEARCH,
-      predicate
-    });
-  }
-
+export function create(todo, limitDate) {
+  console.log('start create');
 }
-export default new TodoActions();
+
+export function remove(todoId) {
+  console.log('start remove');
+}
+
+export function complete(todoId, limitDate) {
+  console.log('start complete');
+}
+
+export function load() {
+  console.log('start load');
+  return dispatch => {
+    dispatch(request());
+    return fetch('/api/todos/')
+      .then(response => response.json())
+      .then(todo => dispatch(receive(todo)));
+  };
+}
+
+export function searchTodo(predicate) {
+}
+
+function request() {
+  return {
+    type: REQUEST
+  };
+}
+
+function receive(todo) {
+  console.info(todo);
+  return {
+    type: RECEIVED
+  };
+}

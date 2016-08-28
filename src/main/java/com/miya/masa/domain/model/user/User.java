@@ -1,5 +1,6 @@
 package com.miya.masa.domain.model.user;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
@@ -19,6 +20,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class User {
+
 
   @Id
   @GeneratedValue

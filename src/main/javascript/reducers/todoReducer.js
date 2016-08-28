@@ -1,20 +1,13 @@
-import TodoConstants from '../app/TodoConstants';
+import { REQUEST, RECEIVED } from '../actions/TodoActions';
 
 export default (state, action) => {
-  const {id, todo, limitDate, complete} = action;
   switch (action.type) {
-    case TodoConstants.CREATE:
-      return [{
-        todo,
-        limitDate,
-        complete
-      }, ...state];
-    case TodoConstants.COMPLETE:
-      return state.map(e => e === id ? Object.assign({}, e, action.complete) : e);
-    case TodoConstants.REMOVE:
-      return state.filter(e => e === id);
-    case TodoConstants.SEARCH:
-      return state.filter(action.predicate);
+    case REQUEST:
+      console.log('request');
+      return state;
+    case RECEIVED:
+      console.log('received');
+      return state;
     default:
       break;
   }

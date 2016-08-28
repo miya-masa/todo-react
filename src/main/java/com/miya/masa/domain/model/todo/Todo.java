@@ -27,17 +27,17 @@ public class Todo {
   @GeneratedValue
   private Long id;
 
-  @Column(name = "COMPLETE")
-  private boolean complete;
+  @Column(name = "TODO")
+  private String todo;
+
+  @Column(name = "COMPLETE", nullable = false)
+  private Boolean complete;
 
   @Column(name = "LIMIT_DATE")
   private LocalDateTime limitDate;
 
   @ManyToOne
   private User user;
-
-  @Column(name = "TODO")
-  private String todo;
 
   @CreatedDate
   private LocalDateTime createDate;
