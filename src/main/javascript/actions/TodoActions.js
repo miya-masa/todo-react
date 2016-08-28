@@ -35,8 +35,8 @@ function request() {
 }
 
 function receive(todo) {
-  console.info(todo);
   return {
-    type: RECEIVED
+    type: RECEIVED,
+    todo
   };
 }

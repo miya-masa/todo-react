@@ -52,20 +52,19 @@ class Todo extends React.Component {
     //  TodoActions.searchTodo((todo) => todo.todo.indexOf(event.target.value) >= 0);
   }
 
-  //      <Container>
-  //        <AppBar title="Todoリスト" showMenuIconButton={false} />
-  //        <div>
-  //          <TodoDialogContainer handleSubmit={this.handleSubmitSuccess} />
-  //          <TodoSearchBox onChangeSearchBox={this.onChangeSearchBox}/>
-  //          <div>
-  //            <TodoGridTable todos={this.state.todos} onChangeComplete={this.onChangeComplete} onTouchRemove={this.onTouchRemove}/>
-  //          </div>
-  //        </div>
-  //      </Container>
-
   render() {
+
+    // <TodoGridTable todos={this.state.todos} onChangeComplete={this.onChangeComplete} onTouchRemove={this.onTouchRemove}/>
     return (
-      <h1>heelo</h1>
+      <Container>
+          <AppBar title="Todoリスト" showMenuIconButton={false} />
+          <div>
+            <TodoDialogContainer handleSubmit={this.handleSubmitSuccess} />
+            <TodoSearchBox onChangeSearchBox={this.onChangeSearchBox}/>
+            <div>
+            </div>
+          </div>
+        </Container>
       );
   }
 }
