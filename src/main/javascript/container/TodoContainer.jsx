@@ -53,8 +53,6 @@ class Todo extends React.Component {
   }
 
   render() {
-
-    // <TodoGridTable todos={this.state.todos} onChangeComplete={this.onChangeComplete} onTouchRemove={this.onTouchRemove}/>
     return (
       <Container>
           <AppBar title="Todoリスト" showMenuIconButton={false} />
@@ -62,6 +60,7 @@ class Todo extends React.Component {
             <TodoDialogContainer handleSubmit={this.handleSubmitSuccess} />
             <TodoSearchBox onChangeSearchBox={this.onChangeSearchBox}/>
             <div>
+               <TodoGridTable todos={this.props.todos} onChangeComplete={this.onChangeComplete} onTouchRemove={this.onTouchRemove}/>
             </div>
           </div>
         </Container>
@@ -69,8 +68,10 @@ class Todo extends React.Component {
   }
 }
 
-function mapStateToProps(state = {}) {
-  return state;
+function mapStateToProps(state) {
+  return {
+    todos: state.todoReducer.todos
+  };
 }
 
 export default connect(mapStateToProps)(Todo);

@@ -1,17 +1,23 @@
 import { REQUEST, RECEIVED } from '../actions/TodoActions';
 
-export default function todoReducer(state = {}, action) {
+const initialiState = {
+  todos: []
+};
+
+export default function todoReducer(state = initialiState, action) {
   switch (action.type) {
     case REQUEST:
       console.log('request');
-      return state;
+      return Object.assign({}, state);
     case RECEIVED:
       console.log('received');
-      const todos = action.todo._embedded;
-      console.log(todos);
-      return Object.assign({}, state, todos);
+      const todos = action.todo._embedded.todos.map(e => Object.assign({}, e, {
+        limitDate: `${e.limitDate.year}-${e.limitDate.monthValue}-${e.limitDate.dayOfMonth}`
+      }));
+      return Object.assign({}, state, {
+        todos
+      });
     default:
-      break;
+      return Object.assign({}, state);
   }
-  return state;
 }
