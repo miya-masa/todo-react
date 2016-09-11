@@ -12,7 +12,8 @@ export default class TodoRow extends React.Component {
       'textDecoration': this.props.todo.complete ? 'line-through' : 'none'
     };
     return (<TableRow key={this.props.todo.id}>
-        <TableRowColumn style={lineThroughStyle}>{this.props.todo.id}</TableRowColumn>
+        <TableRowColumn style={lineThroughStyle}>{this.props.no}</TableRowColumn>
+        <TableRowColumn style={lineThroughStyle}>{this.props.todo.code}</TableRowColumn>
         <TableRowColumn style={lineThroughStyle}>{this.props.todo.todo}</TableRowColumn>
         <TableRowColumn style={lineThroughStyle}>{this.props.todo.limitDate}</TableRowColumn>
         <TableRowColumn>

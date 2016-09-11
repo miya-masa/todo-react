@@ -1,6 +1,5 @@
 package com.miya.masa.domain.model.user;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
@@ -21,12 +20,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class User {
 
-
   @Id
   @GeneratedValue
   private Long id;
 
-  @Column(name = "email")
+  @Column(name = "email", unique = true)
   private String email;
 
   @Column(name = "last_name")

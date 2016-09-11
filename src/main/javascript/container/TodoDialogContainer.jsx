@@ -88,7 +88,7 @@ class TodoDialogContainer extends React.Component {
   }
 
   onChangeLimitDate(noused, selectedDate) {
-    const limitDate = moment(selectedDate).format('YYYY/MM/DD');
+    const limitDate = moment(selectedDate).format('YYYY-MM-DDT00:00:00');
     this.setState({
       limitDate
     });

@@ -32,7 +32,6 @@
     "gulp-uncss": "^1.0.0",
     "gulp-useref": "^3.0.0",
     "gulp-util": "^3.0.7",
-    "hbsfy": "^2.5.1",
     "lodash.assign": "^4.0.6",
     "psi": "^2.0.2",
     "redux-devtools": "^3.3.1",
@@ -51,9 +50,11 @@
     "start": "gulp serve"
   },
   "dependencies": {
+    "axios": "^0.14.0",
     "events": "^1.1.0",
     "flux": "^2.1.1",
     "immutable": "^3.8.1",
+    "install": "^0.8.1",
     "isomorphic-fetch": "^2.2.1",
     "joi": "^8.0.5",
     "joi-validation-strategy": "^0.3.3",
@@ -68,6 +69,7 @@
     "redux": "^3.5.2",
     "redux-logger": "^2.6.1",
     "redux-thunk": "^2.1.0",
+    "superagent": "^2.2.0",
     "uuid-js": "^0.7.5"
   },
   "browserify": {

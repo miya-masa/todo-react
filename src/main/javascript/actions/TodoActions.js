@@ -1,10 +1,20 @@
-import fetch from 'isomorphic-fetch';
+import axios from 'axios';
 
 export const REQUEST = 'todo.request';
 export const RECEIVED = 'todo.received';
 
 export function create(todo, limitDate) {
   console.log('start create');
+  return dispatch => {
+    dispatch(request());
+    const user = 1;
+    return axios
+      .post('/api/todos/', {
+        todo,
+        limitDate,
+        user
+      });
+  };
 }
 
 export function remove(todoId) {
@@ -19,8 +29,9 @@ export function load() {
   console.log('start load');
   return dispatch => {
     dispatch(request());
-    return fetch('/api/todos/')
-      .then(response => response.json())
+    return axios
+      .get('/api/todos/')
+      .then(response => response.data)
       .then(todo => dispatch(receive(todo)));
   };
 }

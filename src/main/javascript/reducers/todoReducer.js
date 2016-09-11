@@ -11,9 +11,7 @@ export default function todoReducer(state = initialiState, action) {
       return Object.assign({}, state);
     case RECEIVED:
       console.log('received');
-      const todos = action.todo._embedded.todos.map(e => Object.assign({}, e, {
-        limitDate: `${e.limitDate.year}-${e.limitDate.monthValue}-${e.limitDate.dayOfMonth}`
-      }));
+      const todos = action.todo._embedded.todos;
       return Object.assign({}, state, {
         todos
       });

@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import AppBar from 'material-ui/lib/app-bar';
 import TodoStore from '../store/TodoStore';
-import { load } from '../actions/TodoActions';
+import { load, complete, create } from '../actions/TodoActions';
 import TodoDialogContainer from './TodoDialogContainer.jsx';
 import TodoGridTable from '../component/TodoGridTable.jsx';
 import TodoSearchBox from '../component/TodoSearchBox.jsx';
@@ -17,17 +17,10 @@ class Todo extends React.Component {
     this.onTouchRemove = this.onTouchRemove.bind(this);
     this.handleSubmitSuccess = this.handleSubmitSuccess.bind(this);
     this.onChangeSearchBox = this.onChangeSearchBox.bind(this);
-
-  //    this.state = { todos: TodoStore.getAllTodos()
-  //    };
   }
 
   componentDidMount() {
     this.props.dispatch(load());
-  }
-
-  componentWillUnMount() {
-    //    TodoStore.removeListener(this.changeTodoState);
   }
 
   changeTodoState(todos = TodoStore.getAllTodos()) {
@@ -38,6 +31,7 @@ class Todo extends React.Component {
 
   onChangeComplete(todo, value) {
     //   TodoActions.completeTodo(todo.id, value);
+    this.props.dispatch(complete(todo.id, value));
   }
 
   onTouchRemove(todo) {
@@ -45,7 +39,7 @@ class Todo extends React.Component {
   }
 
   handleSubmitSuccess(todo, limitDate) {
-    //   TodoActions.createTodo(todo, limitDate);
+    this.props.dispatch(create(todo, limitDate));
   }
 
   onChangeSearchBox(event) {
