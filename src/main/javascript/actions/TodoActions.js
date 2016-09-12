@@ -7,11 +7,15 @@ export function create(todo, limitDate) {
   console.log('start create');
   return dispatch => {
     dispatch(request());
-    const user = 1;
+    const user = {
+      id: 1
+    };
+    const complete = false;
     return axios
       .post('/api/todos/', {
         todo,
         limitDate,
+        complete,
         user
       });
   };
