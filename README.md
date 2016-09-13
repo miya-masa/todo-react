@@ -5,6 +5,7 @@ React + Redux を利用したTodoアプリケーションサンプル。
 ## サーバ側実装技術
 * Spring Framework
 * Spring Data Rest
+* Spring Data Jpa
 
 ## クライアント側
 * React
