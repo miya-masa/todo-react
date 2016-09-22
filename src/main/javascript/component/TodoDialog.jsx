@@ -1,8 +1,9 @@
 import React from 'react';
-import Dialog from 'material-ui/lib/dialog';
-import FlatButton from 'material-ui/lib/flat-button';
-import DatePicker from 'material-ui/lib/date-picker/date-picker';
-import TextField from 'material-ui/lib/text-field';
+import Dialog from 'material-ui/Dialog';
+import FlatButton from 'material-ui/FlatButton';
+import DatePicker from 'material-ui/DatePicker';
+import TextField from 'material-ui/TextField';
+import TodoUserSelectBoxContainer from '../container/TodoUserSelectBoxContainer.jsx';
 
 export default class TodoDialog extends React.Component {
 
@@ -22,21 +23,22 @@ export default class TodoDialog extends React.Component {
     ];
 
     return (
-      <Dialog title={this.props.title} actions={actions} modal={true} open={this.props.open} >
-          <h3>{this.props.headerMessage}</h3>
-          <TextField
-      id={this.props.textTodoId}
+      <Dialog title="Todo追加" actions={actions} modal={true} open={this.props.open} >
+          <h3>Todoを追加してみよう</h3>
+      <TextField
+      id="todo"
       hintText="Todo Text"
       errorText={this.props.errorTodo}
       onChange={this.props.onChangeTodo}/>
-    <DatePicker
+      <DatePicker
       hintText="Limit Date"
-      id={this.props.textLimitDateId}
+      id="limitDate"
       errorText={this.props.errorLimitDate}
       onChange={this.props.onChangeLimitDate}
       DateTimeFormat={Intl.DateTimeFormat}
       locale="ja"/>
-        </Dialog>
+      <TodoUserSelectBoxContainer />
+      </Dialog>
       );
   };
 }

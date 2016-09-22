@@ -14,7 +14,6 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import com.miya.masa.domain.model.user.User;
-import com.miya.masa.util.CodeSource;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,7 +23,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Todo implements CodeSource {
+public class Todo {
 
   @Id
   @GeneratedValue(strategy = GenerationType.TABLE,
@@ -58,9 +57,5 @@ public class Todo implements CodeSource {
   @LastModifiedDate
   private LocalDateTime updateTime;
 
-  @Override
-  public String getSource() {
-    return id.toString();
-  }
 
 }

@@ -1,6 +1,5 @@
 'use strict';
 
-import path from 'path';
 import gulp from 'gulp';
 import del from 'del';
 import runSequence from 'run-sequence';
@@ -8,18 +7,16 @@ import browserSync from 'browser-sync';
 import browserify from 'browserify';
 import watchify from 'watchify';
 import assign from 'lodash.assign';
-import swPrecache from 'sw-precache';
 import gulpLoadPlugins from 'gulp-load-plugins';
 import source from 'vinyl-source-stream';
 import buffer from 'vinyl-buffer';
-import { output as pagespeed } from 'psi';
-import pkg from './package.json';
 
 const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
 
 const sourceDir = 'src/main/javascript/';
 const destDir = 'src/main/resources/static/dist/';
+const productDir = 'bin/static/dist/';
 
 // Lint JavaScript
 gulp.task('lint', () => gulp.src(sourceDir + '**.js')
@@ -36,6 +33,7 @@ var bundle = (b) => {
     // optional, remove if you don't need to buffer file contents
     .pipe(buffer())
     .pipe(gulp.dest(destDir))
+    .pipe(gulp.dest(productDir))
     .pipe(reload({
       stream: true,
       once: true
@@ -55,7 +53,6 @@ gulp.task('build', () => {
   b.on('log', $.util.log); // output build logs to terminal
   return bundle(b);
 });
-
 
 gulp.task('watch', ['clean'], () => {
   // add custom browserify options here

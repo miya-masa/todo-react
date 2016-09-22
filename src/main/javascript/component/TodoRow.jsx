@@ -1,10 +1,10 @@
 import React from 'react';
 import moment from 'moment';
-import TableRowColumn from 'material-ui/lib/table/table-row-column';
-import TableRow from 'material-ui/lib/table/table-row';
-import FloatingActionButton from 'material-ui/lib/floating-action-button';
-import Checkbox from 'material-ui/lib/checkbox';
-import ContentRemove from 'material-ui/lib/svg-icons/content/remove';
+import TableRowColumn from 'material-ui/Table/TableRowColumn';
+import TableRow from 'material-ui/Table/TableRow';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import Checkbox from 'material-ui/Checkbox';
+import ContentRemove from 'material-ui/svg-icons/content/Remove';
 
 export default class TodoRow extends React.Component {
 

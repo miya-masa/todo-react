@@ -18,7 +18,6 @@ public class TodoEventHandler {
   @HandleBeforeCreate
   public void handleBeforeTodoSave(Todo todo) {
     String code = generator.generate();
-    todo.setComplete(false);
     todo.setCode(code);
   }
 
