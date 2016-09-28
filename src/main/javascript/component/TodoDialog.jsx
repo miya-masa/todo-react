@@ -1,4 +1,5 @@
 import React from 'react';
+import AddButton from '../component/AddButton.jsx';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import DatePicker from 'material-ui/DatePicker';
@@ -7,38 +8,67 @@ import TodoUserSelectBoxContainer from '../container/TodoUserSelectBoxContainer.
 
 export default class TodoDialog extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.onChangeTodo = this.onChangeTodo.bind(this);
+    this.onChangeUser = this.onChangeUser.bind(this);
+    this.onChangeLimitDate = this.onChangeLimitDate.bind(this);
+  }
+
+  handleSubmit() {
+    const {todo, limitDate} = this.props;
+    this.props.clear();
+    this.props.close();
+    this.props.create(todo, limitDate);
+  }
+
+  onChangeTodo(event) {
+    this.props.onChangeTodo(event.target.value);
+  }
+
+  onChangeLimitDate(noused, selectedDate) {
+    this.props.onChangeLimitDate(selectedDate);
+  }
+
+  onChangeUser(event, index, value) {
+    this.props.onChangeUser(value);
+  }
+
   render() {
     const actions = [
       <FlatButton
       label="Cancel"
       secondary={true}
-      onTouchTap={this.props.handleCancel}
+      onTouchTap={this.props.cancel}
       />,
       <FlatButton
       label="Submit"
       primary={true}
       disabled={false}
-      onTouchTap={this.props.handleSubmit}
+      onTouchTap={this.handleSubmit}
       />
     ];
-
     return (
-      <Dialog title="Todo追加" actions={actions} modal={true} open={this.props.open} >
+      <div>
+        <AddButton handleAdd={this.props.open}/>
+      <Dialog title="Todo追加" actions={actions} autoOk={true} open={this.props.openDialog} >
           <h3>Todoを追加してみよう</h3>
       <TextField
       id="todo"
       hintText="Todo Text"
       errorText={this.props.errorTodo}
-      onChange={this.props.onChangeTodo}/>
+      onChange={this.onChangeTodo}/>
       <DatePicker
       hintText="Limit Date"
       id="limitDate"
       errorText={this.props.errorLimitDate}
-      onChange={this.props.onChangeLimitDate}
+      onChange={this.onChangeLimitDate}
       DateTimeFormat={Intl.DateTimeFormat}
       locale="ja"/>
-      <TodoUserSelectBoxContainer />
+      <TodoUserSelectBoxContainer value={this.props.select} onChangeUser={this.onChangeUser} />
       </Dialog>
+      </div>
       );
   };
 }

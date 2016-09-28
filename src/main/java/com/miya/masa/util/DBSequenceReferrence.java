@@ -11,6 +11,7 @@ public interface DBSequenceReferrence extends SequenceReferrence, JpaRepository<
   default Long current(String tableName) {
     Sequence probe = new Sequence();
     probe.setTableName(tableName);
+    findAll().forEach(System.out::println);
     return findOne(Example.of(probe)).getSequenceNo();
   }
 }

@@ -1,6 +1,7 @@
-package com.miya.masa;
+package com.miya.masa.config;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurerAdapter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -12,6 +13,11 @@ public class RestConfig extends RepositoryRestConfigurerAdapter {
   @Override
   public void configureJacksonObjectMapper(ObjectMapper objectMapper) {
     objectMapper.registerModule(new JSR310Module());
+  }
+
+  @Override
+  public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
+    config.setBasePath("api");
   }
 
 }

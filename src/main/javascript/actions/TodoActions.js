@@ -1,7 +1,9 @@
 import axios from 'axios';
+import moment from 'moment';
 
 export const REQUEST = 'todo.request';
 export const RECEIVED = 'todo.received';
+export const REMOVE_TODO = 'todo.remove';
 
 export function create(todo, limitDate) {
   console.log('start create');
@@ -14,15 +16,21 @@ export function create(todo, limitDate) {
     return axios
       .post('/api/todos/', {
         todo,
-        limitDate,
+        limitDate: moment(limitDate).format('YYYY-MM-DDTHH:mm:ss.SSS'),
         complete,
         user
-      });
+      }).then(() => dispatch(load()));
   };
 }
 
-export function remove(todoId) {
+export function remove(todo) {
   console.log('start remove');
+  return dispatch => {
+    dispatch(request());
+    axios
+      .delete(todo._links.self.href)
+      .then(() => dispatch(load()));
+  };
 }
 
 export function complete(todoId, limitDate) {

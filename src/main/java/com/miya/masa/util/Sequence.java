@@ -11,9 +11,7 @@ import lombok.Data;
 public class Sequence {
 
   @Id
-  private String id;
-
-  @Column(name = "TABLE_NAME", nullable = false, unique = true)
+  @Column(name = "TABLE_NAME")
   private String tableName;
 
   @Column(name = "SEQUENCE_NO", nullable = false)

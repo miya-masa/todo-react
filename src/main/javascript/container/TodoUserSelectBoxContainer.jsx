@@ -1,28 +1,24 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { load } from '../actions/UserActions';
-import { changeUser } from '../actions/DialogActions';
 import UserSelectBox from '../component/UserSelectBox';
 
-function mapStateToProps(state) {
+function mapStateToProps(state, ownProps) {
   let {users} = state.userReducer;
-  const {select} = state.dialogReducer;
   users = users.map(user => {
     return {
       id: user.email,
       name: `${user.lastName} ${user.firstName}`
     };
   });
-  return {
-    users,
-    select
-  };
+  return Object.assign({}, ownProps, {
+    users: users
+  });
 }
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    load,
-    handleChange: changeUser
+    load
   }, dispatch);
 }
 

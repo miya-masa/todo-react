@@ -86,7 +86,12 @@ gulp.task('serve', ['watch'], () => {
     //       will present a certificate warning in the browser.
     // https: true,
     // server: ['./'],
-    proxy: 'localhost:8080',
+    proxy: {
+      target: 'localhost:8080',
+      proxyReq: [
+        proxyReq => proxyReq.setHeader('X-Forwarded-Host', 'localhost:3000')
+      ]
+    },
     port: 3000
 
   });

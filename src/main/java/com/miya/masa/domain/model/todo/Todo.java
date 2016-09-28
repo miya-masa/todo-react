@@ -4,14 +4,17 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.TableGenerator;
+import javax.persistence.Version;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import com.miya.masa.domain.model.user.User;
 
@@ -20,20 +23,21 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Todo {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.TABLE,
-      generator = "sequence")
+  @GeneratedValue(strategy = GenerationType.TABLE, generator = "sequence")
   @TableGenerator(
       valueColumnName = "SEQUENCE_NO",
       pkColumnName = "TABLE_NAME",
       pkColumnValue = "TODO",
       table = "SEQUENCE",
-      name = "sequence")
+      name = "sequence",
+      allocationSize = 1)
   private Long id;
 
   @Column(name = "CODE", nullable = false, unique = true)
@@ -57,5 +61,8 @@ public class Todo {
   @LastModifiedDate
   private LocalDateTime updateTime;
 
+  @Version
+  @Column(name = "VERSION", nullable = false)
+  private Long version;
 
 }
