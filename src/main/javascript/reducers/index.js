@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import { reducer as formReducer } from 'redux-form';
 import todoReducer from './todoReducer';
 import userReducer from './userReducer';
 import dialogReducer from './dialogReducer';
@@ -8,7 +9,8 @@ const rootReducer = combineReducers({
   todoReducer,
   userReducer,
   dialogReducer,
-  loaderReducer
+  loaderReducer,
+  formReducer
 });
 
 export default rootReducer;

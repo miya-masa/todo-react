@@ -9,10 +9,7 @@ const initialState = Immutable.Map({
     link: ''
   },
   openDialog: false,
-  error: {
-    todo: '',
-    limitDate: ''
-  }
+  isValid: false
 });
 
 export default function dialogReducer(state = initialState, action) {

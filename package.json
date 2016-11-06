@@ -67,6 +67,7 @@
     "react-tap-event-plugin": "^1.0.0",
     "react-validation-mixin": "^5.3.4",
     "redux": "^3.5.2",
+    "redux-form": "^6.2.0",
     "redux-logger": "^2.6.1",
     "redux-thunk": "^2.1.0",
     "superagent": "^2.2.0",

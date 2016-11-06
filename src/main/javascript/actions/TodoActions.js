@@ -5,7 +5,7 @@ export const REQUEST = 'todo.request';
 export const RECEIVED = 'todo.received';
 export const REMOVE_TODO = 'todo.remove';
 
-// TODO to todo form 
+// TODO to todo form
 export function create(todo, limitDate, selectedUserId) {
   const complete = false;
   return ajax((dispatch, getState) => {

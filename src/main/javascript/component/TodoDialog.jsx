@@ -5,15 +5,32 @@ import FlatButton from 'material-ui/FlatButton';
 import DatePicker from 'material-ui/DatePicker';
 import TextField from 'material-ui/TextField';
 import TodoUserSelectBoxContainer from '../container/TodoUserSelectBoxContainer.jsx';
+import { Field, reduxForm } from 'redux-form';
 
-export default class TodoDialog extends React.Component {
+const renderTextField = props => (<TextField
+  id={props.name}
+  hintText={props.label}
+  errorText={props.meta.error}
+  onChange={props.input.onChange}
+  />);
+
+const renderDatePicker = props => {
+  console.log(props.input);
+  return (<DatePicker
+    hintText={props.label}
+    id={props.name}
+    errorText={props.meta.error}
+    DateTimeFormat={Intl.DateTimeFormat}
+    onChange={(noused, selectedDate) => props.input.onChange(selectedDate)}
+    locale="ja"/>);
+};
+
+class TodoDialog extends React.Component {
 
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.onChangeTodo = this.onChangeTodo.bind(this);
     this.onChangeUser = this.onChangeUser.bind(this);
-    this.onChangeLimitDate = this.onChangeLimitDate.bind(this);
   }
 
   handleSubmit() {
@@ -21,14 +38,6 @@ export default class TodoDialog extends React.Component {
     this.props.clear();
     this.props.close();
     this.props.create(todo, limitDate, user);
-  }
-
-  onChangeTodo(event) {
-    this.props.onChangeTodo(event.target.value);
-  }
-
-  onChangeLimitDate(noused, selectedDate) {
-    this.props.onChangeLimitDate(selectedDate);
   }
 
   onChangeUser(event, index, value) {
@@ -49,26 +58,20 @@ export default class TodoDialog extends React.Component {
       onTouchTap={this.handleSubmit}
       />
     ];
+    console.log(this.props.limitDate);
     return (
       <div>
         <AddButton handleAdd={this.props.open}/>
       <Dialog title="Todo追加" actions={actions} autoOk={true} open={this.props.openDialog} >
           <h3>Todoを追加してみよう</h3>
-      <TextField
-      id="todo"
-      hintText="Todo Text"
-      errorText={this.props.errorTodo}
-      onChange={this.onChangeTodo}/>
-      <DatePicker
-      hintText="Limit Date"
-      id="limitDate"
-      errorText={this.props.errorLimitDate}
-      onChange={this.onChangeLimitDate}
-      DateTimeFormat={Intl.DateTimeFormat}
-      locale="ja"/>
+          <Field name="todo" component={renderTextField} label="Todo Text" />
+          <Field name="limitDate" component={renderDatePicker} label="Limit Date" />
       <TodoUserSelectBoxContainer value={this.props.user} onChangeUser={this.onChangeUser} />
       </Dialog>
       </div>
       );
   };
 }
+export default reduxForm({
+  form: 'todoDialog'
+})(TodoDialog);
