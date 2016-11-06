@@ -11,7 +11,7 @@ export default function todoReducer(state = initialiState, action) {
       return Object.assign({}, state);
     case RECEIVED:
       console.log('received');
-      const todos = action.todo._embedded.todos;
+      const todos = action.data._embedded.todos;
       return Object.assign({}, state, {
         todos
       });

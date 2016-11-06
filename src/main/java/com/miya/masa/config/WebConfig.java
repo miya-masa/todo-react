@@ -23,7 +23,7 @@ public class WebConfig {
       public void requestInitialized(ServletRequestEvent sre) {
         log.info("Sleep Thread");
         try {
-          TimeUnit.SECONDS.sleep(2);
+          TimeUnit.SECONDS.sleep(1);
         } catch (InterruptedException e) {
           throw new RuntimeException(e);
         }

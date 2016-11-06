@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { ajax } from './AjaxActions';
 
 export const REQUEST = 'user.request';
 export const RECEIVED = 'user.received';
@@ -6,7 +7,7 @@ export const RECEIVED = 'user.received';
 export function create(todo, limitDate) {
   console.log('start create');
   return dispatch => {
-    dispatch(request());
+    dispatch(ajax(REQUEST));
     const user = {
       id: 1
     };
@@ -31,27 +32,15 @@ export function complete(todoId, limitDate) {
 
 export function load() {
   console.log('start user load');
-  return dispatch => {
-    dispatch(request());
-    return axios
-      .get('/api/users/')
-      .then(response => response.data)
-      .then(users => dispatch(receive(users)));
-  };
+  return ajax(dispatch => axios
+    .get('/api/users/')
+    .then(response => response.data)
+    .then(data => dispatch({
+      type: RECEIVED,
+      data
+    }))
+  );
 }
 
 export function searchTodo(predicate) {
-}
-
-function request() {
-  return {
-    type: REQUEST
-  };
-}
-
-function receive(users) {
-  return {
-    type: RECEIVED,
-    users
-  };
 }

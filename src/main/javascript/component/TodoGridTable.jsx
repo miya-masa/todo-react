@@ -9,21 +9,12 @@ import TableRow from 'material-ui/Table/TableRow';
 
 export default class TodoGridTable extends React.Component {
 
-  constructor() {
-    super();
-    this.onChangeComplete = this.onChangeComplete.bind(this);
-  }
-
   componentDidMount() {
     this.props.load();
   }
 
-  onChangeComplete(todo, value) {
-    this.props.complete(todo.id, value);
-  }
-
   render() {
-    const rows = this.props.todos.map((e, index) => <TodoRow todo={e} no={_.padStart(index + 1, 4, '0')} key={e.code} onTouchRemove={this.props.onTouchRemove} onChangeComplete={this.onChangeComplete} />);
+    const rows = this.props.todos.map((e, index) => <TodoRow todo={e} no={_.padStart(index + 1, 4, '0')} key={e.code} onTouchRemove={this.props.onTouchRemove} onChangeComplete={this.props.complete} />);
 
     return (
       <Table selectable={false}>

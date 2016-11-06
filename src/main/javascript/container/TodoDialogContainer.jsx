@@ -2,18 +2,18 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as DialogActions from '../actions/DialogActions';
 import { create } from '../actions/TodoActions';
-import { load } from '../actions/UserActions';
 import TodoDialog from '../component/TodoDialog.jsx';
 
 function mapStateToProps(state) {
-  let {users} = state.userReducer;
-  users = users.map(user => {
+  const users = state.userReducer.get('users').toArray().map(user => {
     return {
-      id: user.email,
+      id: user.id,
+      email: user.email,
+      link: user._links.self.href,
       name: `${user.lastName} ${user.firstName}`
     };
   });
-  return Object.assign({}, state.dialogReducer, {
+  return Object.assign({}, state.dialogReducer.toObject(), {
     users
   });
 }
@@ -21,7 +21,6 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(
     Object.assign({}, DialogActions, {
-      load,
       create
     }), dispatch);
 }

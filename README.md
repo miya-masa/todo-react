@@ -14,9 +14,9 @@ React + Redux を利用したTodoアプリケーションサンプル。
 ## 準備
 
 1. nodeをインストール
-2. src/main/resources/static へ移動
-3.  ``` npm install ```
-4. プロジェクトルートで ``` ./gradlew bootRun ```
+2. プロジェクトルートで ``` npm install ```
+3. プロジェクトルートで ``` ./gradlew bootRun ```
+4. プロジェクトルートで ``` npm start ```
 
 ## ディレクトリ構成と方式
 

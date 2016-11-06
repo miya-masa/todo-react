@@ -31,10 +31,10 @@ export function clear() {
   };
 }
 
-export function onChangeUser(select) {
+export function onChangeUser(user) {
   return {
     type: CHANGE_USER,
-    select
+    user
   };
 }
 

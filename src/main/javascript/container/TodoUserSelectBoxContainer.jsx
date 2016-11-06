@@ -4,10 +4,11 @@ import { load } from '../actions/UserActions';
 import UserSelectBox from '../component/UserSelectBox';
 
 function mapStateToProps(state, ownProps) {
-  let {users} = state.userReducer;
-  users = users.map(user => {
+  const users = state.userReducer.get('users').toArray().map(user => {
     return {
-      id: user.email,
+      id: user.id,
+      email: user.email,
+      link: user._links.self.href,
       name: `${user.lastName} ${user.firstName}`
     };
   });

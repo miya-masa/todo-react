@@ -8,8 +8,8 @@ import org.springframework.stereotype.Component;
 import com.miya.masa.domain.model.todo.Todo;
 import com.miya.masa.domain.model.todo.TodoCodeGenerator;
 
-@RepositoryEventHandler
 @Component
+@RepositoryEventHandler
 public class TodoEventHandler {
 
   @Autowired

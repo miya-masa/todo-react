@@ -7,7 +7,7 @@ export default class TodoSearchBox extends React.Component {
     return (
       <div>
         <label> Todo検索 : </label>
-        <TextField onChange={this.props.onChangeSearchBox}/>
+        <TextField id="todo-search" onChange={this.props.onChangeSearchBox}/>
     </div>
       );
   }

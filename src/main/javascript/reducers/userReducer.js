@@ -1,22 +1,15 @@
-import { REQUEST, RECEIVED } from '../actions/UserActions';
+import { RECEIVED } from '../actions/UserActions';
+import Immutable from 'immutable';
 
-const initialiState = {
-  users: []
-};
-
+const initialiState = Immutable.Map({
+  users: Immutable.List.of()
+});
 export default function userReducer(state = initialiState, action) {
-  console.log('userReducer reducer');
   switch (action.type) {
-    case REQUEST:
-      console.log('request');
-      return Object.assign({}, state);
     case RECEIVED:
-      console.log('received');
-      const users = action.users._embedded.users;
-      return Object.assign({}, state, {
-        users
-      });
+      const users = action.data._embedded.users;
+      return state.set('users', state.get('users').push(...users));
     default:
-      return Object.assign({}, state);
+      return state;
   }
 }

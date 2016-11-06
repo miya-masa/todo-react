@@ -6,6 +6,7 @@ import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurerAdapt
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JSR310Module;
+import com.miya.masa.domain.model.user.User;
 
 @Configuration
 public class RestConfig extends RepositoryRestConfigurerAdapter {
@@ -18,6 +19,8 @@ public class RestConfig extends RepositoryRestConfigurerAdapter {
   @Override
   public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
     config.setBasePath("api");
+    config.exposeIdsFor(User.class);
   }
+
 
 }

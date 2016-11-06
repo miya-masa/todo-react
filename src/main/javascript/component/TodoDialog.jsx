@@ -17,10 +17,10 @@ export default class TodoDialog extends React.Component {
   }
 
   handleSubmit() {
-    const {todo, limitDate} = this.props;
+    const {todo, limitDate, user} = this.props;
     this.props.clear();
     this.props.close();
-    this.props.create(todo, limitDate);
+    this.props.create(todo, limitDate, user);
   }
 
   onChangeTodo(event) {
@@ -66,7 +66,7 @@ export default class TodoDialog extends React.Component {
       onChange={this.onChangeLimitDate}
       DateTimeFormat={Intl.DateTimeFormat}
       locale="ja"/>
-      <TodoUserSelectBoxContainer value={this.props.select} onChangeUser={this.onChangeUser} />
+      <TodoUserSelectBoxContainer value={this.props.user} onChangeUser={this.onChangeUser} />
       </Dialog>
       </div>
       );

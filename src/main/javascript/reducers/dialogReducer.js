@@ -1,28 +1,28 @@
 import { OPEN, CLOSE, CHANGE_USER, CHANGE_TODO, CHANGE_LIMIT_DATE, CLEAR } from '../actions/DialogActions';
+import Immutable from 'immutable';
 
-const initialState = {
+const initialState = Immutable.Map({
   todo: '',
   limitDate: '',
-  select: '',
+  user: {
+    id: '',
+    link: ''
+  },
   openDialog: false,
   error: {
     todo: '',
     limitDate: ''
   }
-};
+});
 
 export default function dialogReducer(state = initialState, action) {
   switch (action.type) {
     case OPEN:
-      return Object.assign({}, state, {
-        openDialog: true
-      });
+      return state.set('openDialog', true);
     case CLOSE:
-      return Object.assign({}, state, {
-        openDialog: false
-      });
+      return state.set('openDialog', false);
     case CLEAR:
-      return Object.assign({}, state, {
+      return state.merge({
         todo: '',
         limitDate: '',
         select: '',
@@ -32,18 +32,12 @@ export default function dialogReducer(state = initialState, action) {
         }
       });
     case CHANGE_USER:
-      return Object.assign({}, state, {
-        select: action.select
-      });
+      return state.set('user', action.user);
     case CHANGE_LIMIT_DATE:
-      return Object.assign({}, state, {
-        limitDate: action.limitDate
-      });
+      return state.set('limitDate', action.limitDate);
     case CHANGE_TODO:
-      return Object.assign({}, state, {
-        todo: action.todo
-      });
+      return state.set('todo', action.todo);
     default:
-      return Object.assign({}, state);
+      return state;
   }
 }

@@ -43,7 +43,7 @@ public class Todo {
   @Column(name = "CODE", nullable = false, unique = true)
   private String code;
 
-  @Column(name = "TODO")
+  @Column(name = "TODO", nullable = false)
   private String todo;
 
   @Column(name = "COMPLETE", nullable = false)
